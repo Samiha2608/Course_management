@@ -1,0 +1,22 @@
+<h1>All Students</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.email %></td>
+        <td><%= student.phone_no %></td>
+        <td><%= link_to "Show", admin_student_path(student) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

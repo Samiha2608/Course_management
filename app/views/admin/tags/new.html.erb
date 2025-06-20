@@ -1,0 +1,30 @@
+<h1>Create or Manage Tags</h1>
+
+<%= form_with model: [:admin, @tag] do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <%= f.submit "Save Tag" %>
+<% end %>
+
+<h2>Existing Tags</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Tag.all.each do |tag| %>
+      <tr>
+        <td><%= tag.name %></td>
+        <td>
+          <%= button_to "Delete", admin_tag_path(tag), method: :delete, data: { confirm: "Are you sure?" } %>
+          <!-- You could also add an edit form if needed -->
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

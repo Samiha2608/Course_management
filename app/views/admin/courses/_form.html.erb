@@ -1,0 +1,23 @@
+<%= form_with model: [:admin, @course] do |f| %>
+  <p>
+    <%= f.label :course_name %><br>
+    <%= f.text_field :course_name %>
+  </p>
+  <p>
+    <%= f.label :course_hour %><br>
+    <%= f.number_field :course_hour %>
+  </p>
+  <p>
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :tag_ids, "Tags" %><br>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  </p>
+  <%= f.submit %>
+<% end %>

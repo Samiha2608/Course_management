@@ -1,5 +1,5 @@
-class Student < User
-  has_many :course_enrollments
-  has_many :courses, through: :course_enrollments
-  has_many :comments, as: :commentable
+module Student
+  def self.table_name_prefix
+    "student_"
+  end
 end

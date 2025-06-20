@@ -1,0 +1,6 @@
+<h1><%= @course.course_name %></h1>
+<p><strong>Hours:</strong><%= @course.course_hour%></p>
+<p><strong>Price:</strong><%= @course.price%></p>
+<p><strong>Description:</strong><%= @course.description%></p>
+<p><strong>Tags:</strong> <%= @course.tags.map(&:name).join(", ")%></p>
+<%= link_to "Back" , student_courses_path%>
