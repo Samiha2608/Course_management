@@ -4,8 +4,10 @@ class Admin::CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
+  @course = Course.find(params[:id])
+  @comment = Comment.new
   end
+
 
   def new
     @course = Course.new

@@ -1,26 +1,30 @@
-# config/routes.rb
 Rails.application.routes.draw do
-  get "/clear_session", to: "application#clear_session"
-
-  devise_for :users, controllers: {
-    registrations: "users/registrations"
-  }
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   root to: "home#index"
 
-  namespace :student do
-    root "dashboards#dashboards"
-    resources :courses, only: [ :index, :show ]
-  end
-
   namespace :admin do
     root "dashboards#dashboard"
-    resources :courses
+    resources :courses do
+      resources :comments, only: [ :create, :edit, :update, :destroy ], module: :courses
+    end
+    resources :students, only: [ :index, :show, :destroy ] do
+      resources :comments, only: [ :create, :edit, :update, :destroy ], module: :students
+    end
     resources :tags, only: [ :new, :create, :destroy, :update ]
-    resources :students, only: [ :index, :show ]
   end
 
-  get "up" => "rails/health#show", as: :rails_health_check
-  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  namespace :student do
+    namespace :courses do
+      get "comments/create"
+      get "comments/edit"
+      get "comments/update"
+      get "comments/destroy"
+    end
+    root "dashboards#dashboards"
+    resource :profile, only: [ :show ]
+    resources :courses, only: [ :index, :show ] do
+      resources :comments, only: [ :create, :edit, :update, :destroy ], module: :courses
+    end
+  end
 end

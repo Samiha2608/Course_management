@@ -1,33 +1,29 @@
-<h1>All Courses</h1>
-
-<%= link_to "New Course", new_admin_course_path, class: "btn btn-primary" %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Hours</th>
-      <th>Price</th>
-      <th>Tags</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container">
+  <h1>All Courses</h1>
+  <div class="row">
     <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.course_name %></td>
-        <td><%= course.course_hour %></td>
-        <td><%= course.price %></td>
-        <td><%= course.tags.map(&:name).join(", ") %></td>
-       <td>
-            <%= link_to "Show", admin_course_path(course) %> |
-            <%= link_to "Edit", edit_admin_course_path(course) %> |
-            <%= button_to "Delete", admin_course_path(course), 
-              method: :delete, 
-              data: { confirm: "Are you sure you want to delete this course?" } %>
-        </td>
-
-      </tr>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <%= image_tag "6461.jpg", class: "card-img-top", alt: course.course_name, style: "height: 200px; object-fit: cover;" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= course.course_name %></h5>
+            <p class="card-text">
+              <strong>Duration:</strong> <%= course.course_hour %> hours<br>
+              <strong>Price:</strong> $<%= course.price %>
+            </p>
+            <%= link_to "Show Details", admin_course_path(course), class: "btn btn-primary" %>
+          </div>
+          
+          <!-- Tags below the card -->
+          <% if course.tags.any? %>
+            <div class="card-footer bg-light">
+              <% course.tags.each do |tag| %>
+                <span class="badge bg-secondary me-1 mb-1"><%= tag.name %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

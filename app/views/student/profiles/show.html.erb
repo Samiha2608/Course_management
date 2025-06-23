@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <div class="card mb-4">
+    <div class="card-body">
+      <h1 class="card-title">Welcome, <%= @student.name %></h1>
+      <p class="card-text text-muted">This is your student dashboard.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Admin Comments on Your Profile</h3>
+    </div>
+    <div class="card-body">
+      <% if @comments.any? %>
+        <% @comments.each do |comment| %>
+          <div class="border-bottom mb-3 pb-2">
+            <p class="mb-1"><%= comment.content %></p>
+            <small class="text-muted">— <strong><%= comment.author.name %></strong></small>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-muted">No comments from admin yet.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

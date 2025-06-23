@@ -1,0 +1,17 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2>Edit Your Comment</h2>
+    </div>
+    <div class="card-body">
+      <%= form_with model: [ :student, @course, @comment ], local: true do |f| %>
+        <div class="mb-3">
+          <%= f.label :content, "Comment", class: "form-label" %>
+          <%= f.text_area :content, class: "form-control", rows: 4 %>
+        </div>
+        <%= f.submit "Update Comment", class: "btn btn-primary" %>
+        <%= link_to "Back", student_course_path(@course), class: "btn btn-secondary ms-2" %>
+      <% end %>
+    </div>
+  </div>
+</div>

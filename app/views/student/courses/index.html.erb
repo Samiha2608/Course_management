@@ -1,12 +1,29 @@
-<h1>courses</h1>
-<% @courses.each do |course| %>
-<table>
-    <tr>
-        <td><%= course.course_name %></td>
-        <td><%= course.course_hour %></td>
-        <td><%= course.price %></td>
-        <td><%= course.tags.map(&:name).join(", ") %></td>
-         <td><%= link_to "Show", student_course_path(course) %> </td>
-      </tr>
-</table>
-<% end %>
+<div class="container">
+  <h1>All Courses</h1>
+  <div class="row">
+    <% @courses.each do |course| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <%= image_tag "6461.jpg", class: "card-img-top", alt: course.course_name, style: "height: 200px; object-fit: cover;" %>
+
+          <div class="card-body">
+            <h5 class="card-title"><%= course.course_name %></h5>
+            <p class="card-text">
+              <strong>Duration:</strong> <%= course.course_hour %> hours<br>
+              <strong>Price:</strong> $<%= course.price %>
+            </p>
+            <%= link_to "Show Details", student_course_path(course), class: "btn btn-primary" %>
+          </div>
+
+          <% if course.tags.any? %>
+            <div class="card-footer bg-light">
+              <% course.tags.each do |tag| %>
+                <span class="badge bg-secondary me-1 mb-1"><%= tag.name %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

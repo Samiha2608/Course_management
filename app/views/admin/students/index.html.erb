@@ -1,22 +1,20 @@
-<h1>All Students</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container">
+  <h1>All Students</h1>
+  <div class="row">
     <% @students.each do |student| %>
-      <tr>
-        <td><%= student.name %></td>
-        <td><%= student.email %></td>
-        <td><%= student.phone_no %></td>
-        <td><%= link_to "Show", admin_student_path(student) %></td>
-      </tr>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <%= image_tag "6461.jpg", class: "card-img-top", alt: student.name, style: "height: 200px; object-fit: cover;" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= student.name %></h5>
+            <p class="card-text">
+              <strong>Email:</strong> <%= student.email %><br>
+              <strong>Phone:</strong> <%= student.phone_no %>
+            </p>
+            <%= link_to "Show student details", admin_student_path(student), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

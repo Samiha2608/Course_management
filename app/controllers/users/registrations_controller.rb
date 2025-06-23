@@ -1,6 +1,12 @@
 # app/controllers/users/registrations_controller.rb
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
+  protected
+
+  def build_resource(sign_up_params = {})
+  sign_up_params[:type] = "Student"
+  super(sign_up_params)
+  end
 
   private
 

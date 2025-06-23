@@ -1,0 +1,13 @@
+<h1>Edit Comment</h1>
+
+<%= form_with model: [:admin, @course, @comment], local: true do |f| %>
+  <div>
+    <%= f.label :content, "Comment" %><br>
+    <%= f.text_area :content, rows: 5, cols: 60 %>
+  </div>
+
+  <div>
+    <%= f.submit "Update Comment" %>
+    <%= link_to "Cancel", admin_course_path(@course) %>
+  </div>
+<% end %>
