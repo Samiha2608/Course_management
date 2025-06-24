@@ -1,14 +1,32 @@
 <h1>Create or Manage Tags</h1>
+<p class="notice"><%= flash[:notice] %></p>
 
 <%= form_with model: [:admin, @tag] do |f| %>
+  <% if @tag.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h4>
+      <ul class="mb-0">
+        <% @tag.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="mb-3 field col-sm-3">
-    <%= f.label :name ,class:"form-label"%><br>
-    <%= f.text_field :name ,placeholder: "enter the tag" , class: "form-control"%>
+    <%= f.label :name, class: "form-label" %><br>
+    <%= f.text_field :name, placeholder: "enter the tag", class: "form-control #{'is-invalid' if @tag.errors[:name].any?}" %>
+    <% if @tag.errors[:name].any? %>
+      <div class="invalid-feedback">
+        <%= @tag.errors[:name].first %>
+      </div>
+    <% end %>
   </div>
   <div class="actions">
-    <%= f.submit "Save Tag" ,class: "btn btn-success"%>
+    <%= f.submit "Save Tag", class: "btn btn-success" %>
   </div>
 <% end %>
+
 <ul class="list-group list-group-flush">
   <% Tag.all.each do |tag| %>
     <li class="list-group-item d-flex justify-content-between align-items-center">

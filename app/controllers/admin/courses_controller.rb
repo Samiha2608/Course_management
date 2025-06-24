@@ -18,7 +18,7 @@ class Admin::CoursesController < ApplicationController
     if @course.save
       redirect_to admin_courses_path, notice: "Course was successfully created."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class Admin::CoursesController < ApplicationController
     if @course.update(course_params)
       redirect_to admin_courses_path, notice: "Course was successfully updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

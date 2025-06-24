@@ -1,4 +1,5 @@
 <h3>Edit Comment</h3>
+<p class="notice"><%= flash[:notice] %></p>
 
 <%= form_with model: [:admin, @student, @comment], local: true do |f| %>
   <%= f.text_area :content %><br>

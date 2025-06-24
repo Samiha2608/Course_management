@@ -1,5 +1,10 @@
 <div class="container">
-  <h1>All Courses</h1>
+  <div class="d-flex align-items-center">
+      <h1>All Courses</h1>
+       <%= link_to "create Course", new_admin_course_path(@course), class: "btn btn-primary ms-auto" %>
+  </div>
+  <p class="notice"><%= flash[:notice] %></p>
+
   <div class="row">
     <% @courses.each do |course| %>
       <div class="col-md-4 mb-4">

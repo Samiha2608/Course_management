@@ -21,7 +21,7 @@ class Admin::Students::CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to admin_student_path(@student), notice: "Comment updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

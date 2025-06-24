@@ -15,8 +15,12 @@ class Student::Courses::CommentsController < ApplicationController
     end
   end
 
-  def edit
+
+def edit
+  respond_to do |format|
+    format.js
   end
+end
 
   def update
     if @comment.update(comment_params)

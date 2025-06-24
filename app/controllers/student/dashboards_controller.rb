@@ -7,6 +7,6 @@ class Student::DashboardsController < ApplicationController
   private
 
   def ensure_student
-    redirect_to admin_root_path if current_user.is_a?(Admin)
+    redirect_to admin_dashboards_dashboard_path if current_user.is_a?(Admin)
   end
 end

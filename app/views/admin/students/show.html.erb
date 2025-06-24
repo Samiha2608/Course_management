@@ -1,4 +1,5 @@
 <div class="card">
+  <p class="notice"><%= flash[:notice] %></p>
   <div class="card-header">
     <h2><%= @student.name %></h2>
   </div>
@@ -45,3 +46,27 @@
     <% end %>
   </ul>
 </div>
+<h3>Enroll in Courses</h3>
+
+<%= form_with url: enroll_admin_student_path(@student), method: :post, local: true do |f| %>
+  <div class="form-group mb-3">
+   
+    <%= f.label :course_ids, "Select Courses" ,class: "form-check-label"%><br>
+    <%= f.collection_check_boxes :course_ids, Course.all, :id, :course_name ,class: "form-check-input" %>
+  </div>
+
+  <%= f.submit "Enroll Student", class: "btn btn-primary" %>
+<% end %>
+
+<h4>Currently Enrolled Courses:</h4>
+<ul class= "d-flex">
+  <% @student.courses.each do |course| %>
+  <div> <li><%= course.course_name %></li>
+    <%= button_to "Unregister", unregister_from_specific_course_admin_student_path(@student, course_id: course.id),
+                  method: :delete, 
+                  class: "btn btn-danger btn-sm float-md-end", 
+                  data: { confirm: "Are you sure you want to unregister from this course?" } %>
+  <% end %></div>
+</ul>
+
+<%# unregister student from specific course %>

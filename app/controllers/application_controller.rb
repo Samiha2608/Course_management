@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
   def redirect_after_sign_in
     if user_signed_in?
       if current_user.is_a?(Admin)
-        redirect_to admin_root_path
+        redirect_to admin_dashboards_dashboard_path
       else
-        redirect_to student_root_path
+        redirect_to student_dashboards_dashboards_path
       end
     else
       redirect_to new_user_session_path
@@ -37,13 +37,10 @@ class ApplicationController < ActionController::Base
 
   # ✅ Correctly defined outside of any other method
   def after_sign_in_path_for(resource)
-    resource.is_a?(Admin) ? admin_root_path : student_root_path
+    resource.is_a?(Admin) ? admin_dashboards_dashboard_path : student_dashboards_dashboards_path
   end
 
   def after_sign_up_path_for(resource)
-    resource.is_a?(Admin) ? admin_root_path : student_root_path
-  end
-  class ApplicationController < ActionController::Base
-    # After logout, send user to homepage
+    resource.is_a?(Admin) ? admin_dashboards_dashboard_path : student_dashboards_dashboards_path
   end
 end

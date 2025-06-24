@@ -1,3 +1,10 @@
 <h1>New Course</h1>
-<%= render 'form' %>
+<%= render 'form', course: @course %>
 <%= link_to "Back", admin_courses_path %>
+<%puts @course.errors.full_messages %>
+
+<% if @course.errors.any? %>
+  <p>YES! Validation errors present.</p>
+<% else %>
+  <p>NO errors</p>
+<% end %>

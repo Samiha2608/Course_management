@@ -1,9 +1,12 @@
 class Student::CoursesController < ApplicationController
   def index
-    @courses = Course.all
+    @courses = current_user.courses
   end
 
   def show
-    @course = Course.find(params[:id])
+    @course = current_user.courses.find_by(id: params[:id])
+    unless @course
+      redirect_to student_courses_path, alert: "Course not found."
+    end
   end
 end

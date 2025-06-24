@@ -18,9 +18,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Override the sign_up method to redirect based on user type
   def after_sign_up_path_for(resource)
     if resource.is_a?(Admin)
-      admin_root_path
+      admin_dashboards_dashboard_path
     else
-      student_root_path
+      student_dashboards_dashboards_path
     end
   end
 end

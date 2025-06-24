@@ -1,5 +1,6 @@
 <div class="container">
   <h1>All Students</h1>
+  <p class="notice"><%= flash[:notice] %></p>
   <div class="row">
     <% @students.each do |student| %>
       <div class="col-md-4 mb-4">
